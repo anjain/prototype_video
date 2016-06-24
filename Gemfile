@@ -53,3 +53,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'paperclip'
 gem 'bootstrap-slider-rails'
 gem "figaro"
+
+group :production do
+  gem 'rails_12factor'
+end
