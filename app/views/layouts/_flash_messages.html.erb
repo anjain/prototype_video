@@ -1,0 +1,10 @@
+<% if notice %>
+  <div class="company_blue_box_wrapper">
+    <p class="alert alert-info <%= devise_controller? ? 'mt17' : '' %>"><%= notice %></p>
+  </div>
+<% end %>
+<% if alert %>
+  <div class="company_blue_box_wrapper">
+    <p class="alert alert-danger <%= devise_controller? ? 'mt17' : '' %>"><%= alert %></p>
+  </div>
+<% end %>

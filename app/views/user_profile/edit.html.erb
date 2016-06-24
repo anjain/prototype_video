@@ -1,0 +1,147 @@
+<section class="content-header">
+  <h1>
+    Edit User Profile
+  </h1>
+</section>
+<section class="content">
+  <div class="row">
+    <% user_profile = @user.user_profile %>
+    <%= form_for @user, url: user_profile_path(@user.user_profile.id), method: :put do |f| %>
+      <% if f.object.errors.any? %>
+        <div class="col-sm-12">
+          <div class="box box-primary">
+            <div class="box-body">
+              <%= render partial: '/layouts/error_messages', locals: { object: f.object } %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="col-md-3">
+        <%= f.fields_for :user_profile do |u| %>
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <div class="img_section">
+                    <div class="avatar-container">
+                       <%= image_tag @user.image_url, class: 'profile-user-img img-responsive img-circle upload_pic' %>
+                      <div class="edit_profile_pic">
+                       <a href="javascript:void(0)"><img src="/assets/pencil_inactive.png" class="img-responsive" alt="edit"></a>
+                      </div>
+                    </div>
+              </div>
+              <%= u.file_field :image, class: 'hide' %>
+              <%= u.text_field :name, class: 'form-control mt10', placeholder: 'Name' %>
+              <%= u.text_field :current_job, class: 'form-control mt10', placeholder: 'Current Job' %>
+            </div>
+          </div>
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">About Me</h3>
+            </div>
+            <div class="box-body">
+              <strong><i class="fa fa-birthday-cake margin-r-5"></i> Date Of Birth</strong>
+              <%= u.text_field :dob, class: 'form-control datepicker', placeholder: 'yyyy-mm-dd', readonly: true %>
+              <hr>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+              <%= u.text_field :location, class: 'form-control', placeholder: 'Location' %>
+              <hr>
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Objective</strong>
+              <%= u.text_area :objective, rows: '5', class: 'form-control', placeholder: 'Your Objectives' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-9">
+        <% content_for :cameratag_head do %>
+          <%= javascript_include_tag '//cameratag.com/v8/js/cameratag.js' %>
+          <%= stylesheet_link_tag '//cameratag.com/static/8/cameratag.css' %>
+        <% end %>
+        <div class="video_section">
+          <% if @user.video.nil? %>
+            <camera id='<%= @camera_info[0] %>' data-uuid='<%= @camera_info[1] %>' data-maxlength='33' class="img-responsive" style="width:100%;height:400px" ></camera>
+          <% else %>
+            <% if @user.video.uuid.nil? %>
+              <camera id='<%= @camera_info[0] %>' data-uuid='<%= @camera_info[1] %>' data-maxlength='33' class="img-responsive" style="width:100%;height:400px" ></camera>
+            <% else %>
+              <div id="uploaded_video" class="uploaded_video">
+                <video id='MyPlayer1' data-uuid="<%= @user.video.uuid %>" class='img-responsive' data-options='{ "height":400, "width":"auto", "aspectratio": "16:9", "stretch":"uniform"}'></video>
+              </div>
+              <div class ="record_video">
+                <camera id='<%= @camera_info[0] %>' data-uuid='<%= @camera_info[1] %>' data-maxlength='33' class='img-responsive' style="z-index:0;width:100%;height:400px"></camera>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="video_overlay">
+            <div class="pull-right video-settings-section">
+              <%= image_tag "settings.png", alt: 'image', class: 'img-responsive pull-left' %>
+              <%= image_tag "settings_active.png", alt: 'image', class: 'img-responsive pull-left display_none' %>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="box box-primary skill_section">
+          <div class="box-body box-profile">
+            <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+            <%= f.fields_for :user_profile do |u| %>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= u.text_field :skill_1, class: 'form-control' %>
+                </div>
+                <div class="col-md-6">
+                  <%= u.text_field :skill_1_efficiency, class: 'skill_slider_1', type: 'text',
+                   data: {'slider-id' => 'ex1Slider',
+                          'slider-ticks' => ['1', '2', '3'],
+                          'slider-ticks-labels' => ['Beginner', 'Average', 'Expert'],
+                          'slider-min' => '1',
+                          'slider-max' => '3',
+                          'slider-step' => '1',
+                          'slider-value' => user_profile.get_slider_value(1),
+                          'slider-tooltip' => 'hide' } %>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= u.text_field :skill_2, class: 'form-control' %>
+                </div>
+                <div class="col-md-6">
+                <%= u.text_field :skill_2_efficiency, class: 'skill_slider_2', type: 'text',
+                 data: {'slider-id' => 'ex1Slider',
+                        'slider-ticks' => ['1', '2', '3'],
+                        'slider-ticks-labels' => ['Beginner', 'Average', 'Expert'],
+                        'slider-min' => '1',
+                        'slider-max' => '3',
+                        'slider-step' => '1',
+                        'slider-value' => user_profile.get_slider_value(2),
+                        'slider-tooltip' => 'hide' } %>
+                  
+                </div>
+              </div>
+              <hr>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <%= u.text_field :skill_3, class: 'form-control' %>
+                </div>
+                <div class="col-md-6">
+                  <%= u.text_field :skill_3_efficiency, class: 'skill_slider_3', type: 'text',
+                   data: {'slider-id' => 'ex1Slider',
+                          'slider-ticks' => ['1', '2', '3'],
+                          'slider-ticks-labels' => ['Beginner', 'Average', 'Expert'],
+                          'slider-min' => '1',
+                          'slider-max' => '3',
+                          'slider-step' => '1',
+                          'slider-value' => user_profile.get_slider_value(3),
+                          'slider-tooltip' => 'hide' } %>
+                </div>
+              </div> 
+            <% end %>
+          </div>
+          <div class="box-footer">
+            <%= link_to "Cancel", user_profile_index_path, class: 'btn btn-default pull-right', 'data-no-turbolink' => true %>
+            <%= f.submit :update, class: 'btn btn-primary pull-right mr10' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

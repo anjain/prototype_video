@@ -1,0 +1,126 @@
+<section class="content-header">
+  <h1>
+    User Profile
+    <%= link_to "Edit", edit_user_profile_path(@user_profile.id), class: 'btn btn-danger btn-sm', 'data-no-turbolink' => true %>
+  </h1>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-3">
+
+      <!-- Profile Image -->
+      <div class="box box-primary">
+        <div class="box-body box-profile">
+          <%= image_tag current_user.image_url, class: 'profile-user-img img-responsive img-circle' %>
+
+          <h3 class="profile-username text-center"><%= current_user.name %></h3>
+
+          <p class="text-muted text-center"><%= current_user.job %></p>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+      <!-- About Me Box -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">About Me</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <strong><i class="fa fa-birthday-cake margin-r-5"></i> Date Of Birth</strong>
+
+          <p class="text-muted">
+            <%= @user_profile.dob %>
+          </p>
+
+          <hr>
+
+          <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+          <p class="text-muted"><%= @user_profile.location %></p>
+
+          <hr>
+
+          <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+          <div class="skill_view_section">
+            <ul class="menu">
+              <% if @user_profile.skill_1.present? %>
+                <li><!-- Task item -->
+                  <a href="javascript:void(0)">
+                    <h3>
+                      <%= @user_profile.skill_1 %>
+                      <small class="pull-right"><%= @user_profile.skill_1_efficiency %></small>
+                    </h3>
+                    <div class="progress progress-xs">
+                      <div aria-valuemax="3" aria-valuemin="0" aria-valuenow=<%= @user_profile.get_slider_value(1) %> role="progressbar" style="width: <%= @user_profile.get_slider_value(1).to_i*33 %>%" class="progress-bar progress-bar-aqua">
+                        <span class="sr-only"><%= @user_profile.skill_1_efficiency %></span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              <% end %>
+              <% if @user_profile.skill_2.present? %>
+                <li><!-- Task item -->
+                  <a href="javascript:void(0)">
+                    <h3>
+                      <%= @user_profile.skill_2 %>
+                      <small class="pull-right"><%= @user_profile.skill_2_efficiency %></small>
+                    </h3>
+                    <div class="progress progress-xs">
+                      <div aria-valuemax="3" aria-valuemin="0" aria-valuenow=<%= @user_profile.get_slider_value(2) %> role="progressbar" style="width: <%= @user_profile.get_slider_value(2).to_i*33 %>%" class="progress-bar progress-bar-aqua">
+                        <span class="sr-only"><%= @user_profile.skill_2_efficiency %></span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              <% end %>
+              <% if @user_profile.skill_3.present? %>
+                <li><!-- Task item -->
+                  <a href="javascript:void(0)">
+                    <h3>
+                      <%= @user_profile.skill_3 %>
+                      <small class="pull-right"><%= @user_profile.skill_3_efficiency %></small>
+                    </h3>
+                    <div class="progress progress-xs">
+                      <div aria-valuemax="3" aria-valuemin="0" aria-valuenow=<%= @user_profile.get_slider_value(3) %> role="progressbar" style="width: <%= @user_profile.get_slider_value(3).to_i*33 %>%" class="progress-bar progress-bar-aqua">
+                        <span class="sr-only"><%= @user_profile.skill_3_efficiency %></span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-9">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Your Video</h3>
+        </div>
+        <div class="box-body">
+          <% if current_user.video.present? %>
+            <% content_for :cameratag_head do %>
+              <%= javascript_include_tag '//cameratag.com/v8/js/cameratag.js' %>
+              <%= stylesheet_link_tag '//cameratag.com/static/8/cameratag.css' %>
+            <% end %>
+            <video id='profile_video' data-uuid="<%= current_user.try(:video).try(:uuid) %>" data-options='{ "height":450, "width":"auto", "aspectratio": "16:9", "stretch":"uniform"}'>
+            </video>
+          <% else %>
+            <p>No Video upload yet. To Upload video <%= link_to 'Click here', edit_user_profile_path(@user_profile.id), 'data-no-turbolink' => true %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+
+</section>

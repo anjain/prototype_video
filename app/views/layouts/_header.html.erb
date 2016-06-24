@@ -1,0 +1,45 @@
+<header class="main-header">
+  <a class="logo" href="javascript:void(0)">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini"><b>P</b></span>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg"><b>Pitchupp</b></span>
+  </a>
+
+  <nav role="navigation" class="navbar navbar-static-top">
+    <a role="button" data-toggle="offcanvas" class="sidebar-toggle" href="javascript:void(0)">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)" aria-expanded="false">
+            <%= image_tag current_user.image_url, class: 'user-image' %>
+            <span class="hidden-xs"><%= current_user.name.present? ? current_user.name : current_user.email %></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="user-header">
+              <%= image_tag current_user.image_url, class: 'img-circle' %>
+              <p>
+                <%= current_user.name.present? ? current_user.name : current_user.email %> - <%= current_user.job %>
+              </p>
+            </li>
+      
+            <li class="user-footer">
+              <div class="pull-left">
+                <a class="btn btn-default btn-flat" href="<%= user_profile_index_path %>">Profile</a>
+              </div>
+              <div class="pull-right">
+                <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-default btn-flat' %>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="<%= edit_user_profile_path(@current_user.user_profile.id) %>" data-no-turbolink><i class="fa fa-gears"></i></a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</header>

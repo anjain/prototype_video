@@ -1,0 +1,124 @@
+.video_section {
+  position: relative;
+  width: 100%;
+}
+.uploaded_video {
+  opacity: 1;
+  height: 400px;
+}
+.uploaded_video #MyPlayer1 {
+  z-index: 1;
+  height: 400px;
+  width: 100%;
+}
+.record_video {
+  opacity: 0;
+  margin-top: -400px
+}
+.video_overlay {
+  padding: 10px;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+}
+.video-settings-section {
+  background: #fff;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  height: 50px;
+  margin-right: -11px;
+  position: relative;
+  width: 70px;
+  z-index: 9999;
+}
+.video-settings-section > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.display_none{
+  display: none !important;
+}
+.skill_section{
+  input[type="text"] {
+    width: 100%;
+  }
+  #ex1Slider{
+    margin-left: 30px;
+  }
+}
+.mt10{
+  margin-top: 10px;
+}
+.mr10{
+  margin-right: 10px;
+}
+.progress-xs{
+  height: 7px !important;
+  margin: 0;
+  padding: 0;
+}
+.skill_view_section{
+  .menu{
+    list-style: outside none none;
+    margin: 0;
+    max-height: 200px;
+    overflow-x: hidden;
+    padding: 0;
+  }
+  .menu > li > a{
+    padding: 10px;
+    border-bottom: 1px solid #f4f4f4;
+    display: block;
+    white-space: nowrap;
+  }
+  .menu > li > a > h3{
+    color: #666666;
+    font-size: 14px;
+    margin: 0 0 10px;
+    padding: 0;
+  }
+}
+.img_section{
+  position: relative;
+}
+.edit_profile_pic{
+  background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+  border-radius: 50%;
+  height: 100%;
+  left: 0;
+  padding: 0 10px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.edit_profile_pic > a{
+  border-radius: 50%;
+  cursor: pointer;
+  float: right;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.edit_profile_pic > a > img{
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+.avatar-container {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 100px;
+}
+@media (max-width: 991px){
+  #ex1Slider{
+    margin-top: 20px;
+  }
+}
