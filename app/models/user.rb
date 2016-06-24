@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_one :user_profile
   has_one :video
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable#, :confirmable
   accepts_nested_attributes_for :user_profile
   accepts_nested_attributes_for :video
   scope :active_users, -> { where('confirmed_at IS NOT NULL') }
