@@ -7,7 +7,7 @@
         <%= image_tag current_user.image_url, class: 'img-circle' %>
       </div>
       <div class="pull-left info">
-        <p><%= current_user.name.present? ? current_user.name : current_user.email %></p>
+        <p><%= user_name_email current_user %></p>
         <a href="javascript:void(0)"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>

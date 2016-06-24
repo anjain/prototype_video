@@ -15,13 +15,13 @@
         <li class="dropdown user user-menu">
           <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)" aria-expanded="false">
             <%= image_tag current_user.image_url, class: 'user-image' %>
-            <span class="hidden-xs"><%= current_user.name.present? ? current_user.name : current_user.email %></span>
+            <span class="hidden-xs"><%= user_name_email current_user %></span>
           </a>
           <ul class="dropdown-menu">
             <li class="user-header">
               <%= image_tag current_user.image_url, class: 'img-circle' %>
               <p>
-                <%= current_user.name.present? ? current_user.name : current_user.email %> - <%= current_user.job %>
+                <%= user_name_email current_user %> - <%= current_user.job %>
               </p>
             </li>
       
@@ -36,7 +36,7 @@
           </ul>
         </li>
         <li>
-          <a href="<%= edit_user_profile_path(@current_user.user_profile.id) %>" data-no-turbolink><i class="fa fa-gears"></i></a>
+          <a href="<%= current_user.user_profile.present? ? edit_user_profile_path(current_user.user_profile.id) : new_user_profile_path %>" data-no-turbolink><i class="fa fa-gears"></i></a>
         </li>
       </ul>
     </div>

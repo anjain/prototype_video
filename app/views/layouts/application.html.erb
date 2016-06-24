@@ -5,10 +5,12 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= yield(:cameratag_head) %>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="index,follow" name="robots" />
     <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+
     <%= csrf_meta_tags %>
   </head>
   <% unless user_signed_in? %>
@@ -16,7 +18,7 @@
       <%= yield %>
     </body>
   <% else %>
-    <body class="<%= body_class(yield(:body_class))  %>"></body>
+    <body class="<%= body_class(yield(:body_class))  %>">
       <div class="wrapper">
         <%= render partial: "layouts/header" %>
         <%= render partial: "layouts/sidebar" %>
@@ -24,6 +26,6 @@
           <%= yield %>
         </div>
       </div>
-    </html>
+    </body>
   <% end %>
 </html>
