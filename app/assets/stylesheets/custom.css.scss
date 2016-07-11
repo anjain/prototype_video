@@ -117,6 +117,13 @@
   position: relative;
   width: 100px;
 }
+.demo-btn-margin .btn{margin-bottom:6px}
+.login-padding {
+  padding: 20px 60px 60px;
+}
+.login-padding h1 {
+  margin-top: 0;
+}
 @media (max-width: 991px){
   #ex1Slider{
     margin-top: 20px;

@@ -4,6 +4,7 @@
     <title>Pitchupp</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700' rel='stylesheet' type='text/css'>
     <%= yield(:cameratag_head) %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +15,17 @@
     <%= csrf_meta_tags %>
   </head>
   <% unless user_signed_in? %>
-    <body class="hold-transition <%= body_class(params[:controller]) %>">
-      <%= yield %>
-    </body>
+    <% if params[:controller] == 'home' %>
+      <body class="nav-on-header">
+        <%= render partial: "layouts/navbar" %>
+        <%= yield %>
+        <a id="scroll-up" href="#"><i class="ti-angle-up"></i></a>
+      </body>
+    <% else %>
+      <body class="hold-transition <%= body_class(params[:controller]) %>">
+        <%= yield %>
+      </body>
+    <% end %>
   <% else %>
     <body class="<%= body_class(yield(:body_class))  %>">
       <div class="wrapper">

@@ -18,4 +18,5 @@
 //= require bootstrap-slider
 //= require turbolinks
 //= require ./theme/app
+//= require ./theme/custom
 //= require_tree .
